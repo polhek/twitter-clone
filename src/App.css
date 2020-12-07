@@ -1,0 +1,221 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  font-family: 'Open Sans', arial, helvetica, sans-serif;
+  color: white;
+  background-color: #15202b;
+}
+
+.App {
+  width: 100%;
+  height: 100%;
+}
+
+.sidebarContainer {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: solid #38444d 1px;
+  padding-top: 10px;
+  align-items: flex-end;
+}
+
+.sidebarItems {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 5px;
+}
+
+.sidebar-item {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  margin-top: 15px;
+  padding: 5px;
+}
+
+.sidebar-item:hover {
+  color: #1da1f2;
+  background-color: #172f40;
+  border-radius: 9999px;
+}
+
+.tweet-button {
+  width: 230px;
+  height: 47px;
+  margin-top: 10px;
+  background-color: rgb(29, 161, 242);
+  border: none;
+  padding: 6px 30px;
+  border-radius: 9999px;
+  color: white;
+  cursor: pointer;
+}
+
+.tweet-button:hover {
+  background-color: rgb(26, 145, 218);
+}
+
+.tweet-buttonMain:hover {
+  background-color: rgb(26, 145, 218);
+}
+.sidebar-profile {
+  width: 70%;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 3px;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.sidebar-profile:hover {
+  background-color: rgba(29, 161, 242, 0.1);
+}
+
+.sideber-name_profile {
+  display: flex;
+  align-items: center;
+}
+
+.topHome {
+  width: 100%;
+  border-bottom: solid #38444d 1px;
+  height: 45px;
+}
+
+.newTweetContainer {
+  width: 100%;
+  margin-bottom: 50px;
+}
+
+.newTweetForm {
+  width: 100%;
+  display: flex;
+  margin-top: 10px;
+  align-items: center;
+}
+.newTweetForm form {
+  width: 90%;
+  margin-left: 10px;
+}
+
+.newTweetInput {
+  width: 100%;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  padding-left: 10px;
+}
+
+.tweetOptions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: solid #38444d 1px;
+  padding-bottom: 10px;
+}
+
+.addItems {
+  margin-left: 68px;
+  color: rgb(26, 145, 218);
+}
+
+.addIcon {
+  border-radius: 999px;
+}
+.addIcon:hover {
+  background-color: rgba(29, 161, 242, 0.1);
+  color: white;
+}
+
+.tweet-buttonMain {
+  width: 80px;
+  height: 47px;
+  background-color: rgb(29, 161, 242);
+  border: none;
+  border-radius: 9999px;
+  color: white;
+  cursor: pointer;
+}
+
+.newTweetForm {
+  padding-bottom: 10px;
+  border-bottom: solid #38444d 1px;
+}
+
+.mTweetFeed {
+  display: flex;
+  flex-direction: column;
+}
+
+TextareaAutosize::placeholder {
+  font-size: 20px;
+}
+
+.tweet {
+  border-bottom: solid #38444d 1px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.tweetText {
+  padding-top: 10px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.tweetOptionsBottom {
+  margin-left: 60px;
+  display: flex;
+  padding-bottom: 10px;
+}
+
+.tweetIcon {
+  border-radius: 9999px;
+}
+
+.tweetIcon:hover {
+  color: rgb(29, 161, 242);
+}
+
+.mainFeed {
+  display: flex;
+  flex-direction: column;
+}
+
+.rightGrid {
+  border-left: solid #38444d 1px;
+}
+
+.profile-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@media only screen and (max-width: 600px) {
+  .sidebarContainer {
+    width: 60px;
+  }
+}
