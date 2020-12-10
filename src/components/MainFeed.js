@@ -1,9 +1,35 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Typography from '@material-ui/core/Typography';
 import NewTweet from './NewTweet';
 import TweetFeed from './TweetFeed';
+import { UserContext } from '../provider/UserProvider';
+import { db } from '../firebase/firebaseIndex';
 
 const MainFeed = () => {
+  const user = useContext(UserContext);
+  const [allTweets, setAllTweets] = useState([]);
+
+  useEffect(() => {
+    getTweets();
+  }, []);
+
+  const getTweets = () => {
+    db.collection('allTweets')
+      .orderBy('timestamp', 'desc')
+      .onSnapshot(
+        (snapshot) => {
+          setAllTweets(
+            snapshot.docs.map((doc) => {
+              return doc.data();
+            })
+          );
+        },
+        function (error) {
+          console.log(error);
+        }
+      );
+  };
+
   return (
     <div className="mainFeed">
       <div className="topHome">
@@ -15,13 +41,21 @@ const MainFeed = () => {
         </Typography>
       </div>
       <div className="mTweetFeed">
-        <NewTweet />
+        {user && <NewTweet />}
         <div>
-          <TweetFeed />
-          <TweetFeed />
-          <TweetFeed />
-          <TweetFeed />
-          <TweetFeed />
+          {allTweets.map((tweet) => {
+            return (
+              <TweetFeed
+                key={tweet.tweet}
+                displayName={tweet.displayName}
+                handle={tweet.handle}
+                likes={tweet.likes}
+                photo={tweet.photoLink}
+                tweetText={tweet.tweet}
+                likedBy={tweet.likedBy}
+              />
+            );
+          })}
         </div>
       </div>
     </div>

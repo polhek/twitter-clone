@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import SidebarItem from './SidebarItem';
 import ProfileIcon from './ProfileIcon';
 import TwitterIcon from '@material-ui/icons/Twitter';
@@ -11,8 +11,10 @@ import ListIcon from '@material-ui/icons/List';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import Typography from '@material-ui/core/Typography';
+import { UserContext } from '../provider/UserProvider';
 
 const Sidebar = () => {
+  const user = useContext(UserContext);
   return (
     <div className="sidebarContainer">
       <div className="sidebarItems">
@@ -32,7 +34,7 @@ const Sidebar = () => {
           </Typography>
         </button>
       </div>
-      <ProfileIcon />
+      {user && <ProfileIcon />}
     </div>
   );
 };

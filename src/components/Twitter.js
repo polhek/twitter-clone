@@ -1,5 +1,6 @@
-import React, { useContext } from 'react';
-import { firebaseAuth } from '../provider/AuthProvider';
+import React, { useEffect, useContext, useState } from 'react';
+import { UserContext } from '../provider/UserProvider';
+import { Redirect } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Sidebar from './Sidebar';
@@ -13,9 +14,21 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Twitter = () => {
+  const user = useContext(UserContext);
+  const [redirect, setredirect] = useState(null);
   const classes = useStyles();
 
-  const { handleSignout } = useContext(firebaseAuth);
+  useEffect(() => {
+    console.log(user);
+    if (!user) {
+      setredirect('/');
+    }
+  }, [user]);
+
+  if (redirect) {
+    return <Redirect to={redirect} />;
+  }
+
   return (
     <Grid
       container
@@ -24,7 +37,6 @@ const Twitter = () => {
       spacing={0}
     >
       <Grid item sm={3} xs={3} height="100vh">
-        <button onClick={handleSignout}>sign out </button>
         <Sidebar />
       </Grid>
       <Grid item xs={6} height="100vh">
@@ -39,7 +51,7 @@ const Twitter = () => {
         justify="center"
         className="rightGrid"
       >
-        <Profile signout={handleSignout} />
+        {user && <Profile />}
       </Grid>
     </Grid>
   );

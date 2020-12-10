@@ -2,7 +2,9 @@ import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
-import { firebaseAuth } from '../provider/AuthProvider';
+import { useHistory } from 'react-router-dom';
+import { logOut } from '../firebase/firebaseIndex';
+import { UserContext } from '../provider/UserProvider';
 
 const useStyles = makeStyles((theme) => ({
   large: {
@@ -11,8 +13,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Profile = ({ signout }) => {
+const Profile = () => {
   const classes = useStyles();
+  const user = useContext(UserContext);
+  const history = useHistory();
+  const { displayName, email, photoURL, handle } = user;
+  const signOut = () => {
+    history.push('/');
+    logOut();
+  };
 
   return (
     <div>
@@ -20,18 +29,14 @@ const Profile = ({ signout }) => {
         <Typography variant="h5" style={{ marginBottom: '10px' }}>
           Logged in as:
         </Typography>
-        <Avatar
-          className={classes.large}
-          alt="Travis Howard"
-          src="/static/images/avatar/2.jpg"
-        />
+        <Avatar className={classes.large} alt={displayName} src={photoURL} />
         <Typography variant="h6" style={{ marginTop: '10px' }}>
-          Username Surname
+          {displayName}
         </Typography>
         <Typography variant="subtitle1" style={{ marginTop: '5px' }}>
-          @Username
+          @{handle}
         </Typography>
-        <button onClick={signout}>sign out </button>
+        <button onClick={signOut}>sign out </button>
       </div>
     </div>
   );

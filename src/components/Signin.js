@@ -1,43 +1,30 @@
-import React, { useContext } from 'react';
-import { firebaseAuth } from '../provider/AuthProvider';
+import React, { useEffect, useContext, useState } from 'react';
+import { signInWithGoogle } from '../firebase/firebaseIndex';
+import { UserContext } from '../provider/UserProvider';
+import { Redirect } from 'react-router-dom';
 
 const Signin = () => {
-  const { handleSignin, inputs, setInputs, errors } = useContext(firebaseAuth);
-  console.log(handleSignin);
+  const user = useContext(UserContext);
+  const [redirect, setredirect] = useState(null);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('handleSubmit');
-    handleSignin();
-  };
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    console.log(inputs);
-    setInputs((prev) => ({ ...prev, [name]: value }));
-  };
+  useEffect(() => {
+    if (user) {
+      setredirect('/twitter');
+    }
+  }, [user]);
+  if (redirect) {
+    return <Redirect to={redirect} />;
+  }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        Sign in
-        {/* make inputs  */}
-        <input
-          onChange={handleChange}
-          name="email"
-          placeholder="email"
-          value={inputs.email}
+    <div className="login-buttons">
+      <button className="login-provider-button" onClick={signInWithGoogle}>
+        <img
+          src="https://img.icons8.com/ios-filled/50/000000/google-logo.png"
+          alt="google icon"
         />
-        <input
-          onChange={handleChange}
-          name="password"
-          placeholder="password"
-          value={inputs.password}
-        />
-        <button>sign in</button>
-        {errors.length > 0
-          ? errors.map((error) => <p style={{ color: 'red' }}>{error}</p>)
-          : null}
-      </form>
+        <span> Continue with Google</span>
+      </button>
     </div>
   );
 };
