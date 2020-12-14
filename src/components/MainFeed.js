@@ -42,7 +42,7 @@ const MainFeed = () => {
       </div>
       <div className="mTweetFeed">
         {user && <NewTweet />}
-        <div>
+        <div style={{ overflow: 'auto', height: '90vh' }}>
           {allTweets.map((tweet) => {
             return (
               <TweetFeed
@@ -53,6 +53,7 @@ const MainFeed = () => {
                 photo={tweet.photoLink}
                 tweetText={tweet.tweet}
                 likedBy={tweet.likedBy}
+                image={tweet.imageURL}
               />
             );
           })}

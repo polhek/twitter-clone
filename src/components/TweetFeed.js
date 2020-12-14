@@ -14,11 +14,12 @@ const TweetFeed = ({
   photo,
   tweetText,
   likedBy,
+  image,
 }) => {
   const [liked, setLiked] = useState(false);
   const [whoLiked, setWhoLiked] = useState(likedBy);
   const [firstMount, setFirstMount] = useState(true);
-
+  console.log(image);
   const likeTweet = () => {
     if (liked === false && whoLiked.includes(displayName) === false) {
       setLiked(true);
@@ -60,11 +61,18 @@ const TweetFeed = ({
             <b>{displayName}</b> @{handle}
           </Typography>
           <Typography style={{ marginBottom: '15px' }}>{tweetText}</Typography>
+          {image && (
+            <img
+              className="tweetImage"
+              src={image}
+              alt={image}
+              style={{ height: '200px' }}
+            ></img>
+          )}
         </div>
       </div>
       <div className="tweetOptionsBottom">
         <IconButton className="tweetIcon" style={{ color: 'white' }}>
-          {' '}
           <CommentIcon />
         </IconButton>
         <IconButton
