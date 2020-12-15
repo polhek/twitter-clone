@@ -4,6 +4,7 @@ import NewTweet from './NewTweet';
 import TweetFeed from './TweetFeed';
 import { UserContext } from '../provider/UserProvider';
 import { db } from '../firebase/firebaseIndex';
+import uniqid from 'uniqid';
 
 const MainFeed = () => {
   const user = useContext(UserContext);
@@ -46,7 +47,9 @@ const MainFeed = () => {
           {allTweets.map((tweet) => {
             return (
               <TweetFeed
-                key={tweet.tweet}
+                key={uniqid()}
+                id={tweet.id}
+                tweet={tweet}
                 displayName={tweet.displayName}
                 handle={tweet.handle}
                 likes={tweet.likes}

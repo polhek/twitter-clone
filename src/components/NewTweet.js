@@ -87,6 +87,7 @@ const NewTweet = () => {
     db.collection('allTweets')
       .doc(tweet)
       .set({
+        id: tweet,
         displayName: displayName,
         handle: handle,
         tweet: tweet,
