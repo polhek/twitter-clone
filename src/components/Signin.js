@@ -12,6 +12,7 @@ const Signin = () => {
       setredirect('/twitter');
     }
   }, [user]);
+
   if (redirect) {
     return <Redirect to={redirect} />;
   }

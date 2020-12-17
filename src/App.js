@@ -18,10 +18,10 @@ function App() {
       <Router>
         <div className="App">
           <Switch>
-            <Route exact path="/">
+            <Route exact path="">
               <Signin />
             </Route>
-            <Route path="/twitter">
+            <Route exact path="/twitter">
               <Twitter />
             </Route>
           </Switch>

@@ -21,7 +21,7 @@ const Twitter = () => {
   useEffect(() => {
     console.log(user);
     if (!user) {
-      setredirect('/');
+      setredirect('');
     }
   }, [user]);
 
