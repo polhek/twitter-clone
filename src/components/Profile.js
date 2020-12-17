@@ -19,7 +19,7 @@ const Profile = () => {
   const history = useHistory();
   const { displayName, email, photoURL, handle } = user;
   const signOut = () => {
-    history.push('');
+    history.push('/');
     logOut();
   };
 

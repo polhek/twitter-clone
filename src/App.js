@@ -1,6 +1,11 @@
 import './App.css';
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  HashRouter,
+} from 'react-router-dom';
 import Signin from './components/Signin';
 import Twitter from './components/Twitter';
 import { makeStyles } from '@material-ui/core/styles';
@@ -14,11 +19,11 @@ const useStyles = makeStyles((theme) => ({
 
 function App() {
   return (
-    <UserProvider>
-      <Router>
+    <UserProvider basename="/">
+      <HashRouter>
         <div className="App">
           <Switch>
-            <Route exact path="">
+            <Route exact path="/">
               <Signin />
             </Route>
             <Route exact path="/twitter">
@@ -26,7 +31,7 @@ function App() {
             </Route>
           </Switch>
         </div>
-      </Router>
+      </HashRouter>
     </UserProvider>
   );
 }
