@@ -4,8 +4,8 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Signin from './components/Signin';
 import Twitter from './components/Twitter';
 import { makeStyles } from '@material-ui/core/styles';
-
 import UserProvider from './provider/UserProvider';
+
 const useStyles = makeStyles((theme) => ({
   appContainer: {
     height: '100vh',

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import Comments from './Comments';
 import IconButton from '@material-ui/core/IconButton';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
@@ -7,7 +8,6 @@ import ShareIcon from '@material-ui/icons/Share';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import { UserContext } from '../provider/UserProvider';
 import { db } from '../firebase/firebaseIndex';
-import { typography } from '@material-ui/system';
 
 const TweetFeed = ({
   id,
@@ -19,11 +19,14 @@ const TweetFeed = ({
   tweetText,
   likedBy,
   image,
+  allComments,
 }) => {
   const user = useContext(UserContext);
   const [liked, setLiked] = useState(false);
   const [whoLiked, setWhoLiked] = useState(likedBy);
   const [firstMount, setFirstMount] = useState(true);
+  const [commentsVisible, setCommentsVisible] = useState(false);
+
   const likeTweet = () => {
     if (liked === false && whoLiked.includes(displayName) === false) {
       setLiked(true);
@@ -90,6 +93,10 @@ const TweetFeed = ({
       });
   };
 
+  const seeComments = () => {
+    setCommentsVisible(!commentsVisible);
+  };
+
   return (
     <div className="tweet">
       {tweet.retweetPerson && (
@@ -129,7 +136,11 @@ const TweetFeed = ({
         </div>
       </div>
       <div className="tweetOptionsBottom">
-        <IconButton className="tweetIcon" style={{ color: 'white' }}>
+        <IconButton
+          onClick={seeComments}
+          className="tweetIcon"
+          style={{ color: 'white' }}
+        >
           <CommentIcon />
         </IconButton>
         <IconButton
@@ -171,6 +182,7 @@ const TweetFeed = ({
           {whoLiked.length}
         </IconButton>
       </div>
+      {commentsVisible && <Comments id={id} allComments={allComments} />}
     </div>
   );
 };

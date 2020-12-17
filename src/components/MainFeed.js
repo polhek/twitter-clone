@@ -57,6 +57,7 @@ const MainFeed = () => {
                 tweetText={tweet.tweet}
                 likedBy={tweet.likedBy}
                 image={tweet.imageURL}
+                allComments={tweet.comments}
               />
             );
           })}

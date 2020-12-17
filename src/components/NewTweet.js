@@ -7,7 +7,6 @@ import { Fab } from '@material-ui/core';
 import { db, storage } from '../firebase/firebaseIndex';
 import Typography from '@material-ui/core/Typography';
 import { UserContext } from '../provider/UserProvider';
-import firebase from 'firebase';
 
 const useStyles = makeStyles((theme) => ({
   large: {
@@ -96,6 +95,7 @@ const NewTweet = () => {
         timestamp: Date.now(),
         likedBy: [],
         imageURL: null,
+        comments: [],
       })
       .then(() => {
         console.log('Successfully saved tweet info');
