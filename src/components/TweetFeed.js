@@ -84,6 +84,7 @@ const TweetFeed = ({
         timestamp: Date.now(),
         likedBy: [],
         imageURL: image,
+        comments: [],
       })
       .then(() => {
         console.log('Successfully saved tweet info');
